@@ -31,7 +31,7 @@ export default class Signup extends React.Component{
                         </Button>
                         <View style={{flexDirection:"row",marginTop:15}} >
                             <Text>เคยลงทะเบียนแล้ว</Text>
-                            <TouchableWithoutFeedback onPress={()=>{alert("press button")}}>
+                            <TouchableWithoutFeedback onPress={()=>{this.props.navigation.goBack()}}>
                                 <View><Text style={{fontWeight:"bold"}}>เข้าสู่ระบบ?</Text></View>
                             </TouchableWithoutFeedback>
                         </View>
