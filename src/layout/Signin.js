@@ -11,8 +11,10 @@ import {styles} from '../style/styles'
 import {
     Button
 } from 'native-base'
+import {createStackNavigator} from 'react-navigation'
+import Signup from './Signup'
 
-export default class Signin extends React.Component{
+class Signin extends React.Component{
 
     constructor(props){
         super(props)
@@ -28,12 +30,28 @@ export default class Signin extends React.Component{
                         </Button>
                         <View style={{flexDirection:"row",marginTop:15}} >
                             <Text>ยังไม่เคยลงทะเบียน</Text>
-                            <TouchableWithoutFeedback onPress={()=>{alert("press button")}}>
-                                <View><Text style={{fontWeight:"bold"}}>ลงทะเบียน?</Text></View>
+                            <TouchableWithoutFeedback onPress={()=>this.props.navigation.navigate("signup")}>
+                                <View><Text style={{fontWeight:'bold'}}>ลงทะเบียน?</Text></View>
                             </TouchableWithoutFeedback>
                         </View>
-            </KeyboardAvoidingView>
-            
+                        <Text style={{fontWeight:'bold'}}>ลืมรหัสผ่าน</Text>
+            </KeyboardAvoidingView>            
         )
     }
 }
+
+export default SignStack = createStackNavigator(
+    {
+        signin:{screen:Signin},
+        signup:{screen:Signup}
+    },{
+        initialRouteName:'signin',
+        navigationOptions:({navigation}) => ({
+            title:`เข้าสู่ระบบ`
+        }),
+        headerMode:'none'
+    }
+)
+
+
+
