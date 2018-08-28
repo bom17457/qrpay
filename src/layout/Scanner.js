@@ -10,8 +10,10 @@ export default class Scanner extends React.Component{
 
     async componentDidMount(){
         const { status } = await Permissions.askAsync(Permissions.CAMERA);
-        this.setState({ hasCameraPermission:status === 'granted'})
-        
+        this.setState({ 
+            hasCameraPermission:status === 'granted',
+            
+        })                
     }
 
     _handleBarCodeRead = ({type, data}) => {
@@ -24,18 +26,19 @@ export default class Scanner extends React.Component{
         
     }
     async componentWillUnmount(){
+         alert("I will be close camera")
         BarCodeScanner.pausePreview()
+       
     }
-    render(){
+    render(){        
         const { hasCameraPermission } = this.state
-        if(hasCameraPermission === null){
+        if(hasCameraPermission === null){            
             return <View />
         }else if(hasCameraPermission === false){
             return <Text >Camera permission is deniey</Text>
         }
 
         return(
-        
             <View style={{flex:1}} >
                 <BarCodeScanner style={{flex:1}}
                     onBarCodeRead={this._handleBarCodeRead} >
